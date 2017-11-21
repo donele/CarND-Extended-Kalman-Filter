@@ -1,22 +1,22 @@
-#ifndef FusionLaserRadar_H_
-#define FusionLaserRadar_H_
+#ifndef FusionEKF_H_
+#define FusionEKF_H_
 
 #include "measurement_package.h"
 #include "KF.h"
 #include "KFState.h"
 #include "tools.h"
 
-class FusionLaserRadar {
+class FusionEKF {
 public:
   /**
   * Constructor.
   */
-  FusionLaserRadar();
+  FusionEKF();
 
   /**
   * Destructor.
   */
-  virtual ~FusionLaserRadar();
+  virtual ~FusionEKF();
 
   /**
   * Decide whether to use the laser sensor.
@@ -66,4 +66,4 @@ private:
 
 };
 
-#endif /* FusionLaserRadar_H_ */
+#endif /* FusionEKF_H_ */

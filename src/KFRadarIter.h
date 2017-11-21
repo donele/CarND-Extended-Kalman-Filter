@@ -1,11 +1,11 @@
-#ifndef KFRadar_H_
-#define KFRadar_H_
+#ifndef KFRararIter_H_
+#define KFRararIter_H_
 #include "Eigen/Dense"
 #include "tools.h"
 #include "KF.h"
 #include "KFState.h"
 
-class KFRadar: public KF {
+class KFRadarIter: public KF {
 public:
 
   // measurement matrix
@@ -18,12 +18,12 @@ public:
   /**
   * Constructor
   */
-  KFRadar();
+  KFRadarIter();
 
   /**
   * Destructor
   */
-  virtual ~KFRadar();
+  virtual ~KFRadarIter();
 
   /**
    * Updates the state by using Extended Kalman Filter equations

@@ -1,6 +1,7 @@
-#include "FusionLaserRadar.h"
+#include "FusionEKF.h"
 #include "KFLaser.h"
 #include "KFRadar.h"
+#include "KFRadarIter.h"
 #include <iostream>
 
 using namespace std;
@@ -8,24 +9,25 @@ using namespace std;
 /*
  * Constructor.
  */
-FusionLaserRadar::FusionLaserRadar()
+FusionEKF::FusionEKF()
 :use_laser_(true),
 use_radar_(true),
 is_initialized_(false),
 previous_timestamp_(0) {
   kfLaser_ = new KFLaser();
-  kfRadar_ = new KFRadar();
+  //kfRadar_ = new KFRadar();
+  kfRadar_ = new KFRadarIter();
 }
 
 /**
 * Destructor.
 */
-FusionLaserRadar::~FusionLaserRadar() {
+FusionEKF::~FusionEKF() {
   delete kfLaser_;
   delete kfRadar_;
 }
 
-void FusionLaserRadar::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
+void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
   if(SensorIsOff(measurement_pack))
     return;
 
@@ -61,7 +63,7 @@ void FusionLaserRadar::ProcessMeasurement(const MeasurementPackage &measurement_
   //cout << "P = " << state_.P << endl;
 }
 
-bool FusionLaserRadar::SensorIsOff(const MeasurementPackage &measurement_pack) {
+bool FusionEKF::SensorIsOff(const MeasurementPackage &measurement_pack) {
   // Being able to turn off a sensor may be useful for understanding the effect of each sensors.
   if (!use_radar_ && measurement_pack.sensor_type_ == MeasurementPackage::RADAR)
     return true;
@@ -70,7 +72,7 @@ bool FusionLaserRadar::SensorIsOff(const MeasurementPackage &measurement_pack) {
   return false;
 }
 
-void FusionLaserRadar::Init(const MeasurementPackage &measurement_pack) {
+void FusionEKF::Init(const MeasurementPackage &measurement_pack) {
   if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
     state_.x = tools.Polar2Cartesian(measurement_pack.raw_measurements_);
   }

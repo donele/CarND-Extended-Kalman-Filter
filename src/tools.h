@@ -6,6 +6,7 @@
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
 using namespace std;
+const double PI = 3.14159265;
 
 class Tools {
 public:
@@ -38,6 +39,11 @@ public:
   * A helper method to convert Polar coordinates to Cartesian.
   */
   VectorXd Polar2Cartesian(const VectorXd& x_state);
+
+  /**
+  * Normalize the theta angle of the radar measurement vector.
+  */
+  void NormalizeAngle(VectorXd& y);
 
 };
 

@@ -75,3 +75,13 @@ VectorXd Tools::Polar2Cartesian(const VectorXd& x_state) {
   cart_state(3) = ro_dot * sin(theta);
   return cart_state;
 }
+
+void Tools::NormalizeAngle(VectorXd& y) {
+  // Keep the value of theta in [-pi, pi]
+  float theta = y[1];
+  while(theta > PI)
+    theta -= 2*PI;
+  while(theta < -PI)
+    theta += 2*PI;
+  y[1] = theta;
+}
