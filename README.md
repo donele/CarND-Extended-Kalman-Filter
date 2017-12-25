@@ -1,7 +1,7 @@
 # Extended Kalman Filter Project
 Self-Driving Car Engineer Nanodegree Program
 
-A sensor fusion is implemented to estimate the state of a moving object with lidar and radar measurements. A linear kalman filter handles the lidar inputs, and an extended kalman filter is used for the radar measurement.
+A sensor fusion is implemented to estimate the state of a moving object with lidar and radar measurements. A linear kalman filter handles the lidar inputs, and an extended kalman filter (EKF) is used for the radar measurement.
 
 This project involves the Term 2 Simulator which can be downloaded [here](https://github.com/udacity/self-driving-car-sim/releases)
 
@@ -12,17 +12,18 @@ The RMSE of the kalman filters for the first data set is as following.
 |           |px       |py      |vx      |vy      |
 |:---------:|:-------:|:------:|:------:|:------:|
 |Laser+Radar|0.0983   |0.0852  |0.4071  |0.4682  |
-
-### Using only one sensor
-
-Using only one of two sensors, the RMSE is as following.
-
-|           |px       |py      |vx      |vy      |
-|:---------:|:-------:|:------:|:------:|:------:|
 |Laser only |0.1845   |0.1542  |0.6554  |0.4786  |
 |Radar only |0.2321   |0.3361  |0.5317  |0.7139  |
 
-The laser is doing better job at estimating the locations than the radar.
+From the result using only one of the sensors, one can conclude that laser is doing better job at estimating the locations than the radar.
+
+## Iterated Extended Kalman filter
+
+The accuracy of extended kalman filter can be improved by iteratively updating the estimated state ([IEKF](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.21.3804&rep=rep1&type=pdf)). I have implemented IEKF to compare with the basic version of extended kalman filter in `KFRadarIter.cpp`. The result shows that the location accuracy is improved by about 2 percent, and the speed accuracy is improved by about 9 percent.
+
+|           |px       |py      |vx      |vy      |
+|:---------:|:-------:|:------:|:------:|:------:|
+|Laser+Radar|0.0944   |0.0846  |0.3844  |0.4138  |
 
 ## Implementation
 
