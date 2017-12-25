@@ -42,8 +42,13 @@ int main(int argc, char* argv[])
     fusionEKF.UseLaser(false);
     cout << "Using only radar" << endl;
   }
-  cout << "For lidar only:\n  $ ./ExtendedKF L" << endl;
-  cout << "For radar only:\n  $ ./ExtendedKF R" << endl;
+  else
+  {
+    cout << "Using lidar and radar" << endl;
+  }
+  cout << "How to use only one sensor:\n";
+  cout << "    $ ./ExtendedKF L (runs lidar only)" << endl;
+  cout << "    $ ./ExtendedKF R (runs radar only)" << endl;
 
   // used to compute the RMSE later
   Tools tools;
